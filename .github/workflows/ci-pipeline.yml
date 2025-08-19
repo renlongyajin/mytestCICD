@@ -1,0 +1,30 @@
+name: Python CI with Docker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        # 使用 docker build 命令构建一个名为 'test-image' 的镜像
+        run: docker build -t test-image .
+
+      - name: Run tests inside Docker container
+        # 使用 docker run 命令来执行 pytest
+        # --rm: 容器退出后自动删除
+        # test-image: 使用我们刚刚构建的镜像
+        # pytest: 在容器中执行的命令
+        run: docker run --rm test-image pytest
+
+
