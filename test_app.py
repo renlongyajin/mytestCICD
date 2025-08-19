@@ -26,3 +26,8 @@ def test_add_float_numbers():
 def test_add_negative_float_numbers():
     """Test with float numbers."""
     assert add_numbers(1.5, -2.5) == -1.0
+
+
+def test_add_negative_float_numbers2():
+    """Test with float numbers."""
+    assert add_numbers(-1.5, -2.5) == -4.0
